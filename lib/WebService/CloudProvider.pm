@@ -10,7 +10,7 @@ WebService::CloudProvider - an interface to cloudprovider.net's RESTful Web API 
 
 =head1 VERSION
 
-Version 0.2
+Version 0.2.2
 
 =cut
 
