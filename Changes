@@ -1,0 +1,7 @@
+Revision history for WebService-CloudProvider
+
+0.2     2013-02-28T15:13:25
+        fixed use of wrapper_key -> wrapper
+
+0.1     2013-01-07T12:33:24
+        First version, released on an unsuspecting world.
