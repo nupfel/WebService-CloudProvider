@@ -1,20 +1,44 @@
 package WebService::CloudProvider;
 
 use 5.010;
-use Any::Moose;
+use Mouse;
+
+# ABSTRACT: WebService::CloudProvider - an interface to cloudprovider.net's RESTful Web API using Web::API
+
+# VERSION
+
 with 'Web::API';
 
-=head1 NAME
+=head1 SYNOPSIS
 
-WebService::CloudProvider - an interface to cloudprovider.net's RESTful Web API using Web::API
+Quick summary of what the module does.
 
-=head1 VERSION
+Perhaps a little code snippet.
 
-Version 0.2.2
+    use WebService::CloudProvider;
+
+    my $foo = WebService::CloudProvider->new();
+    ...
+
+=head1 SUBROUTINES/METHODS
+
+=head2 list_nodes
+
+=head2 node_info
+
+=head2 create_node
+
+=head2 update_node
+
+=head2 delete_node
+
+=head2 start_node
+
+=head2 stop_node
+
+=head2 suspend_node
 
 =cut
-
-our $VERSION = '0.2';
 
 has 'commands' => (
     is      => 'rw',
@@ -69,35 +93,6 @@ has 'commands' => (
     },
 );
 
-=head1 SYNOPSIS
-
-Quick summary of what the module does.
-
-Perhaps a little code snippet.
-
-    use WebService::CloudProvider;
-
-    my $foo = WebService::CloudProvider->new();
-    ...
-
-=head1 SUBROUTINES/METHODS
-
-=head2 list_nodes
-
-=head2 node_info
-
-=head2 create_node
-
-=head2 update_node
-
-=head2 delete_node
-
-=head2 start_node
-
-=head2 stop_node
-
-=head2 suspend_node
-
 =head1 INTERNALS
 
 =cut
@@ -132,15 +127,10 @@ sub BUILD {
     return $self;
 }
 
-=head1 AUTHOR
-
-Tobias Kirschstein, C<< <lev at cpan.org> >>
-
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-webservice-cloudprovider at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WebService-CloudProvider>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
+Please report any bugs or feature requests on GitHub's issue tracker L<https://github.com/nupfel/WebService-CloudProvider/issues>.
+
 
 =head1 SUPPORT
 
@@ -148,37 +138,28 @@ You can find documentation for this module with the perldoc command.
 
     perldoc WebService::CloudProvider
 
+
 You can also look for information at:
 
 =over 4
 
-=item * RT: CPAN's request tracker (report bugs here)
+=item * GitHub repository
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=WebService-CloudProvider>
+L<https://github.com/nupfel/WebService-CloudProvider>
+
+=item * MetaCPAN
+
+L<https://metacpan.org/module/WebService::CloudProvider>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-L<http://annocpan.org/dist/WebService-CloudProvider>
+L<http://annocpan.org/dist/WebService::CloudProvider>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/d/WebService-CloudProvider>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/WebService-CloudProvider/>
+L<http://cpanratings.perl.org/d/WebService::CloudProvider>
 
 =back
-
-=head1 LICENSE AND COPYRIGHT
-
-Copyright 2013 Tobias Kirschstein.
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See http://dev.perl.org/licenses/ for more information.
 
 =cut
 
