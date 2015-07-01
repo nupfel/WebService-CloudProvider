@@ -1,12 +1,14 @@
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 WebService::CloudProvider - WebService::CloudProvider - an interface to cloudprovider.net's RESTful Web API using Web::API
 
 =head1 VERSION
 
-version 0.3
+version 0.4
 
 =head1 SYNOPSIS
 
@@ -87,3 +89,4 @@ This is free software, licensed under:
 
   The (three-clause) BSD License
 
+=cut

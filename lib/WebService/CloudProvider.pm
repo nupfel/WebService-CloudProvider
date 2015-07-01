@@ -44,9 +44,10 @@ has 'commands' => (
     is      => 'rw',
     default => sub {
         {
-            list_nodes => { method => 'GET' },
-            node_info  => { method => 'GET', require_id => 1 },
+            list_nodes  => { method => 'GET', path => 'virtual_machines' },
+            node_info   => { method => 'GET', path => 'virtual_machines/:id' },
             create_node => {
+                path               => 'virtual_machines',
                 method             => 'POST',
                 default_attributes => {
                     allowed_hot_migrate            => 1,
@@ -72,22 +73,25 @@ has 'commands' => (
                     'swap_disk_size',
                 ]
             },
-            update_node => { method => 'PUT',    require_id => 1 },
-            delete_node => { method => 'DELETE', require_id => 1 },
-            start_node  => {
-                method       => 'POST',
-                require_id   => 1,
-                post_id_path => 'startup',
+            update_node => {
+                method => 'PUT',
+                path   => 'virtual_machines/:id',
+            },
+            delete_node => {
+                method => 'DELETE',
+                path   => 'virtual_machines/:id',
+            },
+            start_node => {
+                method => 'POST',
+                path   => 'virtual_machines/:id/startup',
             },
             stop_node => {
-                method       => 'POST',
-                require_id   => 1,
-                post_id_path => 'shutdown',
+                method => 'POST',
+                path   => 'virtual_machines/:id/shutdown',
             },
             suspend_node => {
-                method       => 'POST',
-                require_id   => 1,
-                post_id_path => 'suspend',
+                method => 'POST',
+                path   => 'virtual_machines/:id/suspend',
             },
         };
     },
@@ -112,16 +116,17 @@ sub BUILD {
     my ($self) = @_;
 
     $self->user_agent(__PACKAGE__ . ' ' . $VERSION);
-    $self->base_url('https://ams01.cloudprovider.net/virtual_machines');
+    $self->base_url('https://ams01.cloudprovider.net/');
     $self->auth_type('basic');
     $self->content_type('application/json');
-    $self->extension('json');
+
+    # $self->extension('json');
     $self->wrapper('virtual_machine');
     $self->mapping({
-            os        => 'template_id',
-            debian    => 1,
-            id        => 'label',
-            disk_size => 'primary_disk_size',
+        os        => 'template_id',
+        debian    => 1,
+        id        => 'label',
+        disk_size => 'primary_disk_size',
     });
 
     return $self;
